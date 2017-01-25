@@ -8,18 +8,31 @@
 
 
 <table>
-    <tr>
-        <th>Project title</th>
-        <th>Description</th>
-        <th>Maximum Grade</th>
+    <tr align="center">
+        <th align="center">Project title</th>
+        <th align="center">Description</th>
+        <th align="center">Maximum Grade</th>
+        {% if students%}
+        <th align="center">Students</th>
+        {% endif %}
+
 
     </tr>
 {% for row in rows %}
 
-<tr>
-    <td>{{ row[0] }}</td>
-    <td>{{ row[1] }}</td>
-    <td>{{ row[2] }}</td>
+<tr align="left">
+    <td align="left">{{ row[0] }}</td>
+    <td align="left">{{ row[1] }}</td>
+    <td align="center">{{ row[2] }}</td>
+    {% if students%}
+    <td style="text-align: left;">
+        <ul style="text-align: left;">{%for student in students %}
+            <li style="text-align: left;"><a href="/student?github={{ student[0] }}"> {{ student[0] }} {{ student[1] }} </li>
+
+        </ul>
+        {% endfor %}
+    </td>
+    {% endif %}
 
 </tr>
 {% endfor %}

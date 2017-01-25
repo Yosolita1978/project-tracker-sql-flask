@@ -48,7 +48,16 @@ def get_project():
 
     title = request.args['project']
     rows = hackbright.get_project_by_title(title)
-    return render_template("project.html", rows=rows, title=title)
+    students = hackbright.get_grades_by_title(title)
+    return render_template("project.html", rows=rows, title=title, students=students)
+
+@app.route("/")
+def home_page():
+
+    students = hackbright.get_all_students()
+    projects = hackbright.get_all_projects()
+
+    return render_template('home.html', students=students, projects=projects)
 
 
 if __name__ == "__main__":
